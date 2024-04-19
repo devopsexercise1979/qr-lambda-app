@@ -26,7 +26,7 @@ resource "aws_lambda_function" "my_lambda" {
   runtime          = "python3.12"
   memory_size      = 128
   timeout          = 10
-  source_code_hash = filebase64sha256("${path.module}/lambda_function.zip")
+  source_code_hash = filebase64sha256("${path.module}/qr-code.zip")
   s3_bucket        = aws_s3_bucket.my_bucket.id
   s3_key           = aws_s3_bucket_object.lambda_zip.key
 
@@ -43,9 +43,9 @@ resource "aws_lambda_function" "my_lambda" {
 # Upload ZIP file to S3
 resource "aws_s3_bucket_object" "lambda_zip" {
   bucket       = aws_s3_bucket.my_bucket.id
-  key          = "lambda_function.zip"
-  source       = "${path.module}/lambda_function.zip"
-  etag         = filemd5("${path.module}/lambda_function.zip")
+  key          = "qr-code.zip"
+  source       = "${path.module}/qr-code.zip"
+  etag         = filemd5("${path.module}/qr-code.zip")
   content_type = "application/zip"
 #   acl          = "public-read"
 }
