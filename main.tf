@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "us-east-1" # Change this to your desired region
+  region = "ap-southeast-2" # Change this to your desired region
 }
 
 # S3 bucket
@@ -20,7 +20,7 @@ resource "aws_lambda_function" "my_lambda" {
   s3_key           = aws_s3_bucket_object.lambda_zip.key
 
   # Use an existing IAM role
-  role = "arn:aws:iam::871740193993:role/service-role/trigger" # Change this to your existing IAM role ARN
+  role = "arn:aws:iam::687740903411:role/lambda-s3-trigger-role" # Change this to your existing IAM role ARN
 
   environment {
     variables = {
@@ -72,7 +72,7 @@ resource "aws_lambda_permission" "apigateway_invoke" {
   function_name = aws_lambda_function.my_lambda.function_name
   principal     = "apigateway.amazonaws.com"
 
-  source_arn = "arn:aws:execute-api:us-east-1:871740193993:${aws_api_gateway_rest_api.api.id}/*/*"
+  source_arn = "arn:aws:execute-api:ap-southeast-2:687740903411:${aws_api_gateway_rest_api.api.id}/*/*"
 }
 
 resource "aws_api_gateway_method_response" "response_200" {
