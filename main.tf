@@ -1,9 +1,6 @@
-variable "aws_access_key" {}
-variable "aws_secret_access" {}
-
 provider "aws" {
-  access_key = var.aws_access_key
-  secret_key = var.aws_secret_access
+  access_key = "AKIA2AIENL7ZXZQVBL6F"
+  secret_key = "bc4FT5zWRn+ZIeJuhCGBr1bGDPOGVSk3patgeWEE"
   region = "ap-southeast-2" # Change this to your desired region
 }
 
