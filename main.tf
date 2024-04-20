@@ -2,6 +2,12 @@
 #variable "AWS_SECRET_ACCESS_KEY" {}
 
 terraform {
+  required_providers {
+    aws = {
+      version = ">= 2.7.0"
+      source = "hashicorp/aws"
+    }
+  }
   backend "remote" {
     # The name of your Terraform Cloud organization.
     organization = "example-org-28b01e"
