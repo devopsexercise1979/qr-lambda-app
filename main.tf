@@ -1,6 +1,5 @@
-provider "aws" {
-  region = "ap-southeast-2" # Change this to your desired region
-}
+variable "AWS_ACCESS_KEY_ID" {}
+variable "AWS_SECRET_ACCESS_KEY" {}
 
 terraform {
   backend "remote" {
@@ -11,6 +10,12 @@ terraform {
       name = "qr-lambda-app"
         }
     }
+}
+
+provider "aws" {
+  region = "ap-southeast-2" # Change this to your desired region
+  access_key = var.AWS_ACCESS_KEY_ID
+  secret_key = var.AWS_SECRET_ACCESS_KEY
 }
 
 # S3 bucket
